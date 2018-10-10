@@ -23,12 +23,13 @@ app.use(async (ctx, next) => {
 
 app.on('error', (err, ctx) => {
   // todo: use winston
-  console.log(err);
+  console.error(ctx.request.href, err);
 })
 
 import router from './routes';
 
+const port = process.env.PORT || 3000;
 app.use(router.routes());
-app.listen(3000);
+app.listen(port);
 
-console.log('Server running on port 3000');
+console.log(`Server running on port ${port}`);
