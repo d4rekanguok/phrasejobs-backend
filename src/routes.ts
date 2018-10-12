@@ -45,7 +45,9 @@ router.get('/jobs', auth, async (ctx) => {
     .catch(err => ctx.throw(err))
 
   // todo: add project name into job detail
-  const accountId: string = "7e0b50e0";
+  const accountId: string | undefined = process.env.ACCOUNT_ID;
+  if (accountId === undefined) ctx.throw(500, `No ACCOUNT_ID found in env`);
+
   const projects: Project[] = allProjects.filter(p => p.account.id === accountId);
   const jobArrays = await Promise.all(
     projects.map(

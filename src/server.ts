@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import Koa from 'koa';
 import logger from 'koa-logger';
 import bodyParser from 'koa-bodyparser';
@@ -22,7 +25,6 @@ app.use(async (ctx, next) => {
 })
 
 app.on('error', (err, ctx) => {
-  // todo: use winston
   console.error(ctx.request.href, err);
 })
 
