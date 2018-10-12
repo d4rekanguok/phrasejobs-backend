@@ -1,7 +1,7 @@
 import Router from 'koa-router';
 const router = new Router();
 
-import { flatten, zipWith, isEmpty } from 'lodash';
+import { zipWith, isEmpty } from 'lodash';
 
 import client from './config/axios-phraseapp';
 import auth from './middleware/auth';
