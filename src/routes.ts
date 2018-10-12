@@ -19,10 +19,10 @@ interface Job {
   [propName: string]: any;
 }
 
-interface Locale {
-  id: string;
-  [propName: string]: any;
-}
+// interface Locale {
+//   id: string;
+//   [propName: string]: any;
+// }
 
 router.post('/authorize', async (ctx) => {
   const { username, password }:any = ctx.request.body;
@@ -75,9 +75,9 @@ router.get('/jobs/:projectId/:jobId', auth, async (ctx) => {
   const client: AxiosStatic = ctx.state.client;
   const { projectId, jobId } : { projectId: String, jobId: String } = ctx.params;
 
-  const jobDetail: Locale[] = await client
+  const jobDetail: Job[] = await client
     .get(`projects/${projectId}/jobs/${jobId}`)
-    .then(res => res.data.locales)
+    .then(res => res.data)
     .catch(err => ctx.throw(400, err));
   
   ctx.body = jobDetail;
