@@ -5,6 +5,7 @@ import { zipWith, isEmpty } from 'lodash';
 
 import client from './config/axios-phraseapp';
 import auth from './middlewares/auth';
+import { encrypt } from './helpers/crypto';
 
 // Axios instance type
 import { AxiosStatic } from 'axios';
@@ -33,7 +34,9 @@ router.post('/authorize', async (ctx) => {
   }, {
     auth: { username, password }
   });
-  ctx.body = { token: data.token };
+
+  const token = encrypt(data.token);
+  ctx.body = { token };
 })
 
 router.get('/jobs', auth, async (ctx) => {
