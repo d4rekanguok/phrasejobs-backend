@@ -4,7 +4,7 @@ const router = new Router();
 import { zipWith, isEmpty } from 'lodash';
 
 import client from './config/axios-phraseapp';
-import auth from './middleware/auth';
+import auth from './middlewares/auth';
 
 // Axios instance type
 import { AxiosStatic } from 'axios';
